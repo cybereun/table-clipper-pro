@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "Table Clipper Pro - 표 원클릭 엑셀/마크다운 변환기",
+  "version": "1.0.0",
+  "description": "웹페이지의 표(Table)에 마우스를 올리면 엑셀(CSV), 마크다운, 클립보드 복사를 원클릭으로 처리합니다.",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "icons": {
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "클릭하여 표 추출기 ON/OFF 전환",
+    "default_icon": {
+      "128": "icons/icon128.png"
+    }
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+T",
+        "mac": "Alt+T"
+      },
+      "description": "표 추출 기능 ON/OFF 토글"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ]
+}
